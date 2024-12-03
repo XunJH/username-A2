@@ -4,10 +4,10 @@ public abstract class Person {
     private String gender;
     private String phoneNumber;
 
-    public Person() {
-        // Default constructor
-    }
+    // Default constructor
+    public Person() {}
 
+    // Take parameter construction method
     public Person(String name, int age, String gender, String phoneNumber) {
         this.name = name;
         this.age = age;

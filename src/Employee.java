@@ -1,21 +1,24 @@
 public class Employee extends Person {
-    private String position; // Position
-    private int workingYears; // Working years
+    private String position;  
+    private int yearsOfWork;  
 
+    // Default constructor
     public Employee() {
-        super();
+        super(); 
     }
 
-    public Employee(String name, int age, String gender, String phoneNumber, String position, int workingYears) {
+    // Take parameter construction method
+    public Employee(String name, int age, String gender, String phoneNumber, String position, int yearsOfWork) {
         super(name, age, gender, phoneNumber);
         this.position = position;
-        this.workingYears = workingYears;
+        this.yearsOfWork = yearsOfWork;
     }
 
     // Getters and Setters
     public String getPosition() { return position; }
     public void setPosition(String position) { this.position = position; }
 
-    public int getWorkingYears() { return workingYears; }
-    public void setWorkingYears(int workingYears) { this.workingYears = workingYears; }
+    public int getYearsOfWork() { return yearsOfWork; }
+    public void setYearsOfWork(int yearsOfWork) { this.yearsOfWork = yearsOfWork; }
 }
+

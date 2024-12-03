@@ -1,11 +1,13 @@
 public class Visitor extends Person {
-    private String ticketTimeSlot; // Ticket period
-    private String ticketID; // Ticket ID
+    private String ticketTimeSlot; 
+    private String ticketID;     
 
+    // Default constructor
     public Visitor() {
-        super();
+        super(); 
     }
 
+    // Take parameter construction method
     public Visitor(String name, int age, String gender, String phoneNumber, String ticketTimeSlot, String ticketID) {
         super(name, age, gender, phoneNumber);
         this.ticketTimeSlot = ticketTimeSlot;
