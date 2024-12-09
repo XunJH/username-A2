@@ -24,7 +24,7 @@ public class AssignmentTwo {
         rollerCoaster.addVisitorToQueue(visitor4);
         rollerCoaster.addVisitorToQueue(visitor5);
     
-        // Prints visitors in the current queue
+        // Print visitors in the current queue
         rollerCoaster.printQueue();
     
         // Remove a visitor
@@ -34,8 +34,57 @@ public class AssignmentTwo {
         rollerCoaster.printQueue();
     }
     
-    public void partFourA() {}
-    public void partFourB() {}
+    public static void partFourA() {
+        // Create a Ride object
+        Ride rollerCoaster = new Ride("Roller Coaster", 4, new Employee("Alice", 30, "Female", "1234567890", "Operator", 5));
+
+        // Add 5 visitors to the queue
+        rollerCoaster.addVisitorToQueue(new Visitor("John", 25, "Male", "9876543210", "12:00 PM", "T001"));
+        rollerCoaster.addVisitorToQueue(new Visitor("Sarah", 30, "Female", "1112223333", "12:30 PM", "T002"));
+        rollerCoaster.addVisitorToQueue(new Visitor("David", 22, "Male", "4445556666", "01:00 PM", "T003"));
+        rollerCoaster.addVisitorToQueue(new Visitor("Emily", 28, "Female", "7778889999", "01:30 PM", "T004"));
+        rollerCoaster.addVisitorToQueue(new Visitor("James", 35, "Male", "0001112222", "02:00 PM", "T005"));
+
+        // Run a ride cycle
+        rollerCoaster.runOneCycle();
+
+        // Check if a visitor has taken the ride
+        Visitor visitorToCheck = new Visitor("Sarah", 30, "Female", "1112223333", "12:30 PM", "T002");
+        System.out.println("Visitor in history: " + rollerCoaster.checkVisitorFromHistory(visitorToCheck));
+
+        // Print number of visitors
+        System.out.println("Number of visitors: " + rollerCoaster.numberOfVisitors());
+
+        // Print ride history
+        rollerCoaster.printRideHistory();
+    }
+
+    public static void partFourB() {
+        // Create a Ride object
+        Ride rollerCoaster = new Ride("Roller Coaster", 4, new Employee("Alice", 30, "Female", "1234567890", "Operator", 5));
+
+        // Add 5 visitors to the queue
+        rollerCoaster.addVisitorToQueue(new Visitor("John", 25, "Male", "9876543210", "12:00 PM", "T001"));
+        rollerCoaster.addVisitorToQueue(new Visitor("Sarah", 30, "Female", "1112223333", "12:30 PM", "T002"));
+        rollerCoaster.addVisitorToQueue(new Visitor("David", 22, "Male", "4445556666", "01:00 PM", "T003"));
+        rollerCoaster.addVisitorToQueue(new Visitor("Emily", 28, "Female", "7778889999", "01:30 PM", "T004"));
+        rollerCoaster.addVisitorToQueue(new Visitor("James", 35, "Male", "0001112222", "02:00 PM", "T005"));
+
+        // Run a ride cycle
+        rollerCoaster.runOneCycle();
+
+        // Print visitors before sorting
+        System.out.println("Visitors before sorting:");
+        rollerCoaster.printRideHistory();
+
+        // Sort the visitors
+        rollerCoaster.sortVisitors();
+
+        // Print visitors after sorting
+        System.out.println("Visitors after sorting:");
+        rollerCoaster.printRideHistory();
+    }
+
     public void partFive() {}
     public void partSix() {}
     public void partSeven() {}

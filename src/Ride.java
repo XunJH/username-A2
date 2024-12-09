@@ -1,5 +1,7 @@
 import java.util.LinkedList;
+import java.util.Iterator;
 import java.util.Queue;
+import java.util.Collections;
 
 public class Ride implements RideInterface {
     private String rideName;
@@ -77,7 +79,7 @@ public class Ride implements RideInterface {
         System.out.println("Running the ride cycle with " + riders + " visitors...");
         for (int i = 0; i < riders; i++) {
             Visitor visitor = queue.poll();
-            addVisitorToHistory(visitor);  // 将游客添加到历史记录
+            addVisitorToHistory(visitor);  // Add the visitor to history
             System.out.println(visitor.getName() + " has taken the ride.");
         }
     }
@@ -103,9 +105,16 @@ public class Ride implements RideInterface {
             System.out.println("No visitors have taken the ride yet.");
         } else {
             System.out.println("Visitors who have taken the ride:");
-            for (Visitor v : rideHistory) {
+            Iterator<Visitor> iterator = rideHistory.iterator();
+            while (iterator.hasNext()) {
+                Visitor v = iterator.next();
                 System.out.println(v.getName());
             }
         }
+    }
+    
+    public void sortVisitors() {
+        Collections.sort(rideHistory, new VisitorComparator());
+        System.out.println("Visitors have been sorted.");
     }
 }

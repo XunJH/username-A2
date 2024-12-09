@@ -21,4 +21,3 @@ public class Employee extends Person {
     public int getYearsOfWork() { return yearsOfWork; }
     public void setYearsOfWork(int yearsOfWork) { this.yearsOfWork = yearsOfWork; }
 }
-
