@@ -1,19 +1,20 @@
 import java.util.LinkedList;
-import java.util.Iterator;
 import java.util.Queue;
 import java.util.Collections;
 
 public class Ride implements RideInterface {
     private String rideName;
     private int maxRiders;
+    private int numOfCycles;  
     private Employee employeeInCharge;
     private Queue<Visitor> queue;  
-    private LinkedList<Visitor> rideHistory;  
+    private LinkedList<Visitor> rideHistory; 
 
     // Add visitors to queue
     public Ride() {
         queue = new LinkedList<>();
         rideHistory = new LinkedList<>();
+        numOfCycles = 0;  
     }
 
     // Construction method with parameters
@@ -23,6 +24,7 @@ public class Ride implements RideInterface {
         this.employeeInCharge = employeeInCharge;
         this.queue = new LinkedList<>();
         this.rideHistory = new LinkedList<>();
+        this.numOfCycles = 0;
     }
 
     // Getters and Setters
@@ -31,6 +33,9 @@ public class Ride implements RideInterface {
 
     public int getMaxRiders() { return maxRiders; }
     public void setMaxRiders(int maxRiders) { this.maxRiders = maxRiders; }
+
+    public int getNumOfCycles() { return numOfCycles; }  // Get the number of cycles run
+    public void setNumOfCycles(int numOfCycles) { this.numOfCycles = numOfCycles; }
 
     public Employee getEmployeeInCharge() { return employeeInCharge; }
     public void setEmployeeInCharge(Employee employeeInCharge) { this.employeeInCharge = employeeInCharge; }
@@ -75,13 +80,16 @@ public class Ride implements RideInterface {
             return;
         }
 
+        // Take a minimum of maxRiders or the size of the queue visitors
         int riders = Math.min(maxRiders, queue.size());
         System.out.println("Running the ride cycle with " + riders + " visitors...");
         for (int i = 0; i < riders; i++) {
-            Visitor visitor = queue.poll();
-            addVisitorToHistory(visitor);  // Add the visitor to history
+            Visitor visitor = queue.poll();  // Remove visitor from the queue
+            addVisitorToHistory(visitor);    // Add visitor to ride history
             System.out.println(visitor.getName() + " has taken the ride.");
         }
+
+        numOfCycles++;  // Increment the cycle count after each run
     }
 
     @Override
@@ -105,9 +113,7 @@ public class Ride implements RideInterface {
             System.out.println("No visitors have taken the ride yet.");
         } else {
             System.out.println("Visitors who have taken the ride:");
-            Iterator<Visitor> iterator = rideHistory.iterator();
-            while (iterator.hasNext()) {
-                Visitor v = iterator.next();
+            for (Visitor v : rideHistory) {
                 System.out.println(v.getName());
             }
         }
