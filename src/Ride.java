@@ -1,5 +1,8 @@
 import java.util.LinkedList;
 import java.util.Queue;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Collections;
 
 public class Ride implements RideInterface {
@@ -118,7 +121,40 @@ public class Ride implements RideInterface {
             }
         }
     }
-    
+
+     // Method to export ride history to a file
+    public void exportRideHistory(String filename) {
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter(new FileWriter(filename));
+
+            writer.write("Ride History:\n");
+            writer.write("Name, Age, Gender, Phone Number, Ticket Time Slot, Ticket ID\n");
+
+            for (Visitor visitor : rideHistory) {
+                writer.write(visitor.getName() + ", " +
+                        visitor.getAge() + ", " +
+                        visitor.getGender() + ", " +
+                        visitor.getPhoneNumber() + ", " +
+                        visitor.getTicketTimeSlot() + ", " +
+                        visitor.getTicketID() + "\n");
+            }
+
+            System.out.println("Ride history exported to file successfully.");
+
+        } catch (IOException e) {
+            System.err.println("An error occurred while writing to the file: " + e.getMessage());
+        } finally {
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+            } catch (IOException e) {
+                System.err.println("An error occurred while closing the file: " + e.getMessage());
+            }
+        }
+    }
+
     public void sortVisitors() {
         Collections.sort(rideHistory, new VisitorComparator());
         System.out.println("Visitors have been sorted.");

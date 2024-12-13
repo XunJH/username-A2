@@ -9,6 +9,8 @@ public class AssignmentTwo {
         partFourB();
 
         partFive();
+
+        partSix();
     }
 
     public static void partThree() {
@@ -124,6 +126,23 @@ public class AssignmentTwo {
         System.out.println("Visitors who have taken the ride:");
         rollerCoaster.printRideHistory();
     }
-    public void partSix() {}
+    public static void partSix() {
+        // Create an Employee object to operate the ride
+        Employee operator = new Employee("John", 35, "Male", "123-456-7890", "Ride Operator", 5);
+        
+        // Create a new Ride object
+        Ride rollerCoaster = new Ride("Roller Coaster", 4, operator);
+    
+        // Add some visitors to the ride (i.e., the ride history)
+        rollerCoaster.addVisitorToHistory(new Visitor("John", 25, "Male", "9876543210", "12:00 PM", "T001"));
+        rollerCoaster.addVisitorToHistory(new Visitor("Sarah", 30, "Female", "1112223333", "12:30 PM", "T002"));
+        rollerCoaster.addVisitorToHistory(new Visitor("David", 22, "Male", "4445556666", "01:00 PM", "T003"));
+        rollerCoaster.addVisitorToHistory(new Visitor("Emily", 28, "Female", "7778889999", "01:30 PM", "T004"));
+        rollerCoaster.addVisitorToHistory(new Visitor("James", 35, "Male", "0001112222", "02:00 PM", "T005"));
+    
+        // Export the visitors' ride history to a file
+        rollerCoaster.exportRideHistory("ride_history.txt");
+    }
+    
     public void partSeven() {}
 }
