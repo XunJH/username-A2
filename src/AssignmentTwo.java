@@ -11,6 +11,8 @@ public class AssignmentTwo {
         partFive();
 
         partSix();
+
+        partSeven();
     }
 
     public static void partThree() {
@@ -144,5 +146,19 @@ public class AssignmentTwo {
         rollerCoaster.exportRideHistory("ride_history.txt");
     }
     
-    public void partSeven() {}
+    public static void partSeven() {
+        // Create a new Ride instance
+        Employee operator = new Employee("Alice", 30, "Female", "1234567890", "Operator", 5);
+        Ride rollerCoaster = new Ride("Roller Coaster", 4, operator);
+        
+        // Import visitors from the file
+        rollerCoaster.importRideHistory("ride_history.txt"); 
+        
+        // Print the number of visitors in the LinkedList (ride history)
+        System.out.println("Number of visitors imported: " + rollerCoaster.numberOfVisitors());
+        
+        // Print the details of all visitors in the LinkedList
+        System.out.println("Visitors who have taken the ride:");
+        rollerCoaster.printRideHistory();
+    }
 }

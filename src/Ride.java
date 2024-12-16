@@ -1,6 +1,8 @@
 import java.util.LinkedList;
 import java.util.Queue;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Collections;
@@ -152,6 +154,36 @@ public class Ride implements RideInterface {
             } catch (IOException e) {
                 System.err.println("An error occurred while closing the file: " + e.getMessage());
             }
+        }
+    }
+
+    // Add this method to import the ride_history from a file
+    public void importRideHistory(String fileName) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] visitorData = line.split(","); 
+                
+                if (visitorData.length == 6) {
+                    try {
+                        String name = visitorData[0];
+                        int age = Integer.parseInt(visitorData[1]);
+                        String gender = visitorData[2];
+                        String phoneNumber = visitorData[3];
+                        String ticketTimeSlot = visitorData[4];
+                        String ticketID = visitorData[5];
+                        
+                        Visitor visitor = new Visitor(name, age, gender, phoneNumber, ticketTimeSlot, ticketID);
+                        addVisitorToHistory(visitor);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Error parsing visitor data: " + e.getMessage());
+                    }
+                } else {
+                    System.out.println("Invalid data format for a visitor: " + line);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
         }
     }
 
